@@ -19,7 +19,7 @@ order16=0
 [projectoptions]
 projectdir=/home/fred/uos/examples
 projectfilename=/home/fred/uos/examples/simpledrums_fpGUI.prj
-findinfiledialog=63
+findinfiledialog=65
  [findinfileadialogfo.subdirs]
  value=1
  [findinfileadialogfo.incurrentfile]
@@ -40,13 +40,15 @@ findinfiledialog=63
   "*.pas" "*.pp" "*.inc"
  [findinfileadialogfo.dir]
  filenames=1
-  /home/fred/fpgui/
+  /home/fred/fpGUI/
  filecolwidth=174
  x=0
  y=0
  cx=0
  cy=0
- filehistory=5
+ filehistory=7
+  /home/fred/fpGUI/
+  /home/fred/fpGUI-maintmoi/
   /home/fred/fpgui/
   /usr/share/fpcsrc/3.0.3/packages/x11/
   /usr/share/fpcsrc/3.0.3/
@@ -55,8 +57,10 @@ findinfiledialog=63
  filefilterindex=0
  filefilter="*.pas" "*.pp" "*.inc"
  [findinfileadialogfo.findtext]
- value=xrender
+ value=fpg_defines
  history=20
+  fpg_defines
+  debug
   xrender
   fpg_xft_x11
   Xft
@@ -75,8 +79,6 @@ findinfiledialog=63
   TKeySym
   keysym
   XAllocClassHint
-  XOpenIM
-  Xutf8LookupString
  [findinfileadialogfo]
  stackedunder=
  x=615
@@ -98,8 +100,9 @@ replacedialog=33
  [replacedialogfo.selectedonly]
  value=0
  [replacedialogfo.replacetext]
- value=var X
+ value=$IF DEFINED(debug) and DEFINED(unix)
  history=20
+  $IF DEFINED(debug) and DEFINED(unix)
   var X
   var 
   cdecl;
@@ -119,7 +122,6 @@ replacedialog=33
   OutputSetDSP
   OutputAddDSP
   cint32
-  shhandle
  [replacedialogfo]
  stackedunder=
  x=260
@@ -164,7 +166,7 @@ options=114
  sorted=0
  col=-1073741823
  row=-1073741823
- rowheight=17
+ rowheight=16
  [projectoptionsfo.newfile]
  firsttab=0
  index=0
@@ -186,7 +188,7 @@ options=114
  sortdescend6=0
  [projectoptionsfo.macrosplitter]
  x=0
- y=143
+ y=144
  xprop=1
  yprop=0.33031674208145
  [projectoptionsfo.macrogrid]
@@ -213,7 +215,7 @@ options=114
  value=
  [projectoptionsfo.makegroupbox]
  firsttab=0
- index=3
+ index=2
  [projectoptionsfo.exceptionsgrid]
  propcolwidthref=724
  width0=47
@@ -237,8 +239,8 @@ options=114
  index=2
  [projectoptionsfo]
  stackedunder=
- x=339
- y=127
+ x=365
+ y=117
  cx=773
  cy=497
 programparameters=18
@@ -264,8 +266,8 @@ settings=8
  [settings_form]
  x=447
  y=148
- cx=471
- cy=446
+ cx=481
+ cy=546
  wsize=0
  active=1
  visible=1
@@ -312,18 +314,20 @@ objpref=-Fo
 targpref=-o
 befcommand=0
 aftcommand=0
-makeoptions=10
+makeoptions=11
  -fPIC
  -l -Mobjfpc -Scghi
  -FE.
  -FUunits
  -WG
  -B
- -O4 -XX -Xs -CX
+ -dDEEBUG
+ -O1 -XX -Xs -CX
  -vewnbq
  -ghl
  -CX -Cg  -g -gl -Xg -vewnhibq 
-makeoptpurpose=10
+makeoptpurpose=11
+ 
  
  
  
@@ -439,6 +443,8 @@ forcezorder=-1
 stripmessageesc=0
 copymessages=0
 closemessages=0
+enablepurpose=0
+enablesource=0
 checkmethods=1
 colorerror=-1610612729
 colorwarning=-1610612712
@@ -518,13 +524,14 @@ modulenames=0
 moduletypes=0
 modulefiles=0
 befcommandon=0
-makeoptionson=10
+makeoptionson=11
  0
  511
  511
  511
  192
  510
+ 4091
  511
  255
  3
@@ -766,6 +773,7 @@ externalconsole=0
 settty=1
 gdbdownload=0
 downloadalways=0
+restartgdbbeforeload=0
 startupbkpt=0
 startupbkpton=0
 gdbsimulator=0
@@ -851,9 +859,9 @@ line=16
  776
  2767
  2080
- 620
- 271
- 312
+ 619
+ 270
+ 311
  356
  163
  2069
@@ -1011,8 +1019,12 @@ envvarons=0
 [edit]
 hintwidth=462
 hintheight=95
-finddtext=bs_Load
+finddtext=playpaused
 findhistory=20
+ playpaused
+ memory
+ Label4
+ $IF DEFINED(debug)
  bs_Load
  PA_FileName
  Pa_Load
@@ -1029,19 +1041,45 @@ findhistory=20
  XftFontOpenName
  XftTextExtentsUTF8
  DYNLOAD
- PrintKeyEvent
- xlookupstring
- writeln
- dynload
 findoptions=1
-editpos=1
- 0,0
+editpos=7
+ 0,-1073741823
+ 0,753
+ 0,-1073741823
+ 0,-1073741823
+ 0,-1073741823
+ 0,-1073741823
+ 0,-1073741823
 bookmarks0=0
-sourcefiles=1
+bookmarks1=0
+bookmarks2=0
+bookmarks3=0
+bookmarks4=0
+bookmarks5=0
+bookmarks6=0
+sourcefiles=7
  ${PROJECTDIR}/simpledrums_fpGUI.pas
-relpaths=1
+ /home/fred/uos/examples/uos_flat.pas
+ ${PROJECTDIR}/uos.pas
+ ${PROJECTDIR}/define.inc
+ /home/fred/eschecs/libraries/fpgui/src/corelib/x11/fpg_x11.pas
+ /home/fred/fpGUI/src/corelib/x11/fpg_x11.pas
+ /home/fred/fpGUI/src/corelib/x11/fpg_xft_x11.pas
+relpaths=7
  simpledrums_fpGUI.pas
-ismoduletexts=1
+ uos_flat.pas
+ uos.pas
+ define.inc
+ eschecs/libraries/fpgui/src/corelib/x11/fpg_x11.pas
+ fpGUI/src/corelib/x11/fpg_x11.pas
+ fpGUI/src/corelib/x11/fpg_xft_x11.pas
+ismoduletexts=7
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
  0
 modules=0
 moduleoptions=0
@@ -1049,28 +1087,16 @@ visiblemodules=0
 nomenumodules=0
 [sourcefo.files_tab]
 firsttab=0
-index=0
+index=1
 [layout]
-windowlayout=543
+windowlayout=555
  [mainfo.basedock]
  splitdir=2
- useroptions=11395
- parent=mainfo.container
- visible=1
- mdistate=0
- nx=0
- ny=0
- ncx=668
- ncy=0
- x=0
- y=0
- cx=1147
- cy=604
- rcx=0
- rcy=0
+ useroptions=268450944
  [mainfo]
  splitdir=0
- useroptions=838860925
+ useroptions=301990011
+ stackedunder=
  parent=
  mdistate=0
  nx=0
@@ -1083,15 +1109,12 @@ windowlayout=543
  cy=621
  rcx=0
  rcy=0
- children=1
-  basedock,0,0,1147,604
- focusedchild=0
  wsize=0
  active=1
  visible=1
  [targetconsolefo]
  splitdir=0
- useroptions=805322857
+ useroptions=268451945
  parent=
  mdistate=0
  nx=0
@@ -1109,7 +1132,7 @@ windowlayout=543
  visible=1
  [threadsfo]
  splitdir=0
- useroptions=805322857
+ useroptions=268451945
  parent=
  mdistate=0
  nx=0
@@ -1127,8 +1150,8 @@ windowlayout=543
  visible=0
  [memoryfo]
  splitdir=0
- useroptions=805322875
- stackedunder=about_form
+ useroptions=268451963
+ stackedunder=dialogfilesfo
  parent=
  mdistate=0
  nx=0
@@ -1154,7 +1177,7 @@ windowlayout=543
  value=0
  [disassfo]
  splitdir=0
- useroptions=805322859
+ useroptions=268451947
  stackedunder=
  parent=
  mdistate=0
@@ -1174,7 +1197,7 @@ windowlayout=543
  [findinfilefo]
  splitdir=0
  useroptions=268451947
- stackedunder=targetconsolefo
+ stackedunder=
  parent=
  mdistate=0
  nx=0
@@ -1189,7 +1212,7 @@ windowlayout=543
  rcy=0
  [projecttreefo]
  splitdir=0
- useroptions=805355627
+ useroptions=268484715
  parent=mainfo.panel1.container
  visible=1
  mdistate=0
@@ -1200,7 +1223,7 @@ windowlayout=543
  x=0
  y=0
  cx=205
- cy=455
+ cy=456
  rcx=0
  rcy=0
  [projecttreefo.grid]
@@ -1211,11 +1234,11 @@ windowlayout=543
  sortdescend1=0
  sorted=0
  col=1
- row=-1073741823
- rowheight=17
+ row=1
+ rowheight=16
  [stackfo]
  splitdir=0
- useroptions=805331049
+ useroptions=268460137
  parent=
  mdistate=0
  nx=0
@@ -1233,7 +1256,7 @@ windowlayout=543
  visible=0
  [watchpointsfo]
  splitdir=0
- useroptions=805322857
+ useroptions=268451945
  parent=
  mdistate=0
  nx=0
@@ -1291,7 +1314,7 @@ windowlayout=543
  value=0
  [objectinspectorfo]
  splitdir=0
- useroptions=805322859
+ useroptions=268451947
  stackedunder=
  parent=
  mdistate=0
@@ -1316,7 +1339,7 @@ windowlayout=543
  sortdescend1=0
  [symbolfo]
  splitdir=0
- useroptions=805322875
+ useroptions=268451963
  stackedunder=
  parent=
  mdistate=0
@@ -1335,7 +1358,11 @@ windowlayout=543
  visible=0
  [symbolfo.grid]
  propcolwidthref=207
- values0=14
+ values0=18
+  
+  
+  
+  
   
   
   
@@ -1357,7 +1384,7 @@ windowlayout=543
  [symbolfo.symbol]
  [watchfo]
  splitdir=0
- useroptions=805331049
+ useroptions=268460137
  parent=mainfo.basedock
  visible=0
  mdistate=0
@@ -1372,7 +1399,7 @@ windowlayout=543
  rcx=1262
  rcy=583
  [watchfo.grid]
- propcolwidthref=111
+ propcolwidthref=121
  values0=2
   0
   0
@@ -1400,7 +1427,7 @@ windowlayout=543
  value=0
  [messagefo]
  splitdir=0
- useroptions=805388395
+ useroptions=268517483
  parent=mainfo.basedock
  visible=1
  mdistate=0
@@ -1409,14 +1436,14 @@ windowlayout=543
  ncx=0
  ncy=0
  x=0
- y=512
+ y=513
  cx=1147
  cy=92
  rcx=0
  rcy=0
  [componentstorefo]
  splitdir=0
- useroptions=805331067
+ useroptions=268460155
  stackedunder=
  parent=
  mdistate=0
@@ -1479,7 +1506,7 @@ windowlayout=543
  filefilter=
  [componentpalettefo]
  splitdir=0
- useroptions=805331051
+ useroptions=268460139
  stackedunder=
  parent=
  mdistate=3
@@ -1516,14 +1543,14 @@ windowlayout=543
  rcy=0
  [debuggerfo.basedock]
  splitdir=2
- useroptions=805452931
+ useroptions=268582019
  parent=debuggerfo.container
  visible=1
  mdistate=0
  nx=0
  ny=0
- ncx=1111
- ncy=52
+ ncx=1147
+ ncy=54
  x=0
  y=0
  cx=1147
@@ -1537,8 +1564,28 @@ windowlayout=543
  [debuggerfo.edit_compiler]
  value=Pascal
  [debuggerfo.file_history]
- value=/home/fred/uos/examples/simpledrums_fpGUI.pas
- history=0
+ value=/home/fred/uos/examples/uos_flat.pas
+ history=20
+  /home/fred/uos/examples/uos_flat.pas
+  /home/fred/fpGUI/src/corelib/x11/fpg_x11.pas
+  /home/fred/eschecs/libraries/fpgui/src/corelib/x11/fpg_x11.pas
+  /home/fred/uos/examples/simpledrums_fpGUI.pas
+  /home/fred/eschecs/source/icon.inc
+  /home/fred/fpGUI-maint/src/corelib/x11/fpg_x11.pas
+  /home/fred/uos/examples/uos.pas
+  /home/fred/uos/src/uos_flat.pas
+  /home/fred/uos/src/uos.pas
+  /home/fred/uos/examples/simpleplayer_fpGUI.pas
+  /home/fred/eschecs/source/engines.pas
+  /home/fred/eschecs/source/settings.pas
+  /home/fred/eschecs_colorstatus/source/eschecs.pas
+  /home/fred/eschecs_colorstatus/source/eschecs.res
+  /home/fred/eschecs/source/board.pas
+  /home/fred/eschecs_prerel2/source/eschecs.pas
+  /home/fred/eschecs/source/version.inc
+  /home/fred/eschecs_prerel2/source/version.inc
+  /home/fred/eschecs_colorstatus/source/version.inc
+  /home/fred/ideu/src/main.pas
  [debuggerfo.project_options]
  value=1
  [debuggerfo.hints]
@@ -1556,14 +1603,17 @@ windowlayout=543
  x=208
  y=0
  cx=939
- cy=455
+ cy=456
  rcx=0
  rcy=0
+ [sourcefo.files_tab]
+ firsttab=0
+ index=1
  [cpuc86_64fo]
  irqoff=0
  splitdir=0
  useroptions=268451947
- stackedunder=findinfilefo
+ stackedunder=targetconsolefo
  parent=
  mdistate=0
  nx=0
@@ -1581,7 +1631,7 @@ windowlayout=543
  visible=0
  [mainfo.panel1]
  splitdir=1
- useroptions=838958571
+ useroptions=302087659
  parent=mainfo.basedock
  visible=1
  mdistate=0
@@ -1592,7 +1642,7 @@ windowlayout=543
  x=0
  y=54
  cx=1147
- cy=455
+ cy=456
  rcx=0
  rcy=0
 [targetconsole]

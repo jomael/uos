@@ -8,7 +8,7 @@ uses
  mseifiglob,msestatfile,msestream,msestrings,sysutils,msegraphedits,
  msescrollbar,msefileutils,msemenuwidgets,msegrids,msewidgetgrid,msebitmap,
  msedatanodes,msefiledialog,mselistbrowser,msesys,msesignal,msebarcode,msedock,
- msedragglob,mseact;
+ msedragglob,mseact,msedropdownlist;
 
 type
  tmainfo = class(tmainform)
@@ -51,6 +51,11 @@ type
    vuLeft: tdockpanel;
    vuRight: tdockpanel;
    ofdir: tfilenameedit;
+   pcdir: tfilenameedit;
+   groupdevout: tgroupbox;
+   usepc: tbooleaneditradio;
+   usepa: tbooleaneditradio;
+   usealsa: tbooleanedit;
    procedure loadlibr(const sender: TObject);
    procedure playit(const sender: TObject);
     procedure ClosePlayer1;
@@ -70,6 +75,10 @@ type
    procedure closeit(const sender: TObject);
    procedure resetplugst(const sender: TObject);
    procedure changepos(const sender: TObject; var avalue: realty;
+                   var accept: Boolean);
+   procedure onsetpcaudio(const sender: TObject; var avalue: Boolean;
+                   var accept: Boolean);
+   procedure onsetportaudio(const sender: TObject; var avalue: Boolean;
                    var accept: Boolean);
  end;
 var
@@ -101,7 +110,7 @@ uses
     2:
     begin
       ps := @Data.Buffer;
-     while x < Data.OutFrames  do
+     while x < Data.OutFrames -1 do
           begin
         samplei := round((ps^[x] + ps^[x+1])/2);
         ps^[x] := samplei ;
@@ -113,7 +122,7 @@ uses
     1:
     begin
       pl := @Data.Buffer;
-     while x < Data.OutFrames  do
+     while x < Data.OutFrames -1 do
           begin
         samplei := round((pl^[x] + pl^[x+1])/2);   
         pl^[x] := samplei ;
@@ -125,7 +134,7 @@ uses
     0:
     begin
       pf := @Data.Buffer;
-     while x < Data.OutFrames  do
+     while x < Data.OutFrames -1 do
           begin
         samplef := (pf^[x] + pf^[x+1])/2;   
         pf^[x] := samplef ;
@@ -290,7 +299,8 @@ loadok : boolean = false;
     // Load the libraries
 // function uos_loadlib(PortAudioFileName, SndFileFileName, Mpg123FileName, Mp4ffFileName, FaadFileName, opusfileFilename: PChar) : LongInt;
 
-if uos_LoadLib(Pchar(AnsiString(mainfo.padir.value)), Pchar(AnsiString(mainfo.sfdir.value)),
+if uos_LoadLib(Pchar(AnsiString(mainfo.padir.value)),
+ Pchar(AnsiString(mainfo.sfdir.value)),
  Pchar(AnsiString(mainfo.mpdir.value)), Pchar(AnsiString(mainfo.m4dir.value)),
  Pchar(AnsiString(mainfo.fadir.value)), Pchar(AnsiString(mainfo.ofdir.value))) = 0 
 
@@ -330,7 +340,7 @@ if uos_LoadLib(Pchar(AnsiString(mainfo.padir.value)), Pchar(AnsiString(mainfo.sf
        begin
      plugsoundtouch := true;
           btnLoad.caption :=
-        'PortAudio, SndFile, Mpg123, AAC, Opus and Plugin are loaded...';
+        'PortAudio, PCaudio, SndFile, Mpg123, AAC, Opus and Plugin are loaded...';
         end
          else
          begin
@@ -348,13 +358,20 @@ if uos_LoadLib(Pchar(AnsiString(mainfo.padir.value)), Pchar(AnsiString(mainfo.sf
       then plugbs2b := true else chkst2b.enabled := false; 
           
       mainfo.caption := 'Simple Player.    uos Version ' + inttostr(uos_getversion());
+  
+     {$IFDEF Windows}
+     usealsa.value := false;
+     usealsa.visible := false;
+     groupdevout.top := 10;
+     {$endif}
+     
        Show;
     end;
   end;
 
 procedure tmainfo.playit(const sender: TObject);
 var
-    samformat: shortint;
+    samformat, libused, devused: shortint;
     temptime: ttime;
     ho, mi, se, ms: word;
   begin
@@ -375,7 +392,9 @@ var
     PlayerIndex1 := 0;
     // PlayerIndex : from 0 to what your computer can do ! (depends of ram, cpu, ...)
     // If PlayerIndex exists already, it will be overwritten...
-
+    
+    //  uos_Stop(PlayerIndex1); 
+      
     if uos_CreatePlayer(PlayerIndex1) then
     //// Create the player.
     //// PlayerIndex : from 0 to what your computer can do !
@@ -393,15 +412,17 @@ var
 
     if InputIndex1 > -1 then
      begin
-      // OutputIndex1 := uos_AddIntoDevOut(PlayerIndex1) ;
+
+     // OutputIndex1 := uos_AddIntoDevOut(PlayerIndex1) ;
     //// add a Output into device with default parameters
-  
+     
   {$if defined(cpuarm)} // needs lower latency
-       OutputIndex1 := uos_AddIntoDevOut(PlayerIndex1, -1, 0.3, uos_InputGetSampleRate(PlayerIndex1, InputIndex1),
-     uos_InputGetChannels(PlayerIndex1, InputIndex1), samformat, -1, -1);
-       {$else}
-      OutputIndex1 := uos_AddIntoDevOut(PlayerIndex1, -1, -1, uos_InputGetSampleRate(PlayerIndex1, InputIndex1),
-     uos_InputGetChannels(PlayerIndex1, InputIndex1), samformat, -1, -1);
+   OutputIndex1 := uos_AddIntoDevOut(PlayerIndex1, devused, 0.3, uos_InputGetSampleRate(PlayerIndex1, InputIndex1),
+     uos_InputGetChannels(PlayerIndex1, InputIndex1), samformat, -1, -1)
+      {$else}
+      OutputIndex1 := uos_AddIntoDevOut(PlayerIndex1, devused, -1, uos_InputGetSampleRate(PlayerIndex1, InputIndex1),
+     uos_InputGetChannels(PlayerIndex1, InputIndex1), samformat, -1, -1 );
+    
        {$endif}
  
     //// add a Output into device with custom parameters
@@ -580,6 +601,33 @@ procedure tmainfo.changepos(const sender: TObject; var avalue: realty;
                var accept: Boolean);
 begin
    uos_InputSeek(PlayerIndex1, InputIndex1, round(avalue * inputlength));
+end;
+
+procedure tmainfo.onsetpcaudio(const sender: TObject; var avalue: Boolean;
+               var accept: Boolean);
+begin
+if avalue = true then
+begin
+//chkst2b.enabled := false;
+//checkbox2.enabled := false;
+usealsa.enabled := true;
+//TrackBar5.enabled := false;
+//TrackBar4.enabled := false;
+end;
+
+end;
+
+procedure tmainfo.onsetportaudio(const sender: TObject; var avalue: Boolean;
+               var accept: Boolean);
+begin
+ if avalue = true then
+begin
+chkst2b.enabled := true;
+checkbox2.enabled := true;
+usealsa.enabled := false;
+TrackBar5.enabled := true;
+TrackBar4.enabled := true;
+end;
 end;
 
 end.

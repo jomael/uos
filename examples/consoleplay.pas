@@ -3,7 +3,7 @@ program consoleplay;
 ///WARNING : if FPC version < 2.7.1 => Do not forget to uncoment {$DEFINE consoleapp} in define.inc !
 
 {$mode objfpc}{$H+}
-   {$DEFINE UseCThreads}
+ {$DEFINE UseCThreads}
 uses
 {$IFDEF UNIX}
   cthreads, 
@@ -28,7 +28,7 @@ type
 
 var
   res, x, y,z: integer;
-  ordir, opath, SoundFilename, PA_FileName, SF_FileName, MP_FileName: string;
+  ordir, opath, SoundFilename, PA_FileName, PC_FileName, SF_FileName, MP_FileName: string;
   PlayerIndex1, InputIndex1, OutputIndex1 : integer;
   
   { TuosConsole }
@@ -49,8 +49,8 @@ var
  {$ENDIF}
 
      {$if defined(cpu64) and defined(linux) }
-    PA_FileName := ordir + 'lib/Linux/64bit/LibPortaudio-64.so';
-    SF_FileName := ordir + 'lib/Linux/64bit/LibSndFile-64.so';
+  SF_FileName := ordir + 'lib/Linux/64bit/LibSndFile-64.so';
+  PA_FileName := ordir + 'lib/Linux/64bit/LibPortaudio-64.so';
     SoundFilename := ordir + 'sound/test.ogg';
    {$ENDIF}
    
@@ -78,11 +78,21 @@ var
  {$ENDIF}
 
  {$IFDEF Darwin}
+  {$IFDEF CPU32}
     opath := ordir;
     opath := copy(opath, 1, Pos('/UOS', opath) - 1);
     PA_FileName := opath + '/lib/Mac/32bit/LibPortaudio-32.dylib';
     SF_FileName := opath + '/lib/Mac/32bit/LibSndFile-32.dylib';
-    SoundFilename := opath + '/sound/test.ogg';
+    SoundFilename := ordir + '/sound/test.ogg';
+    {$ENDIF}
+  
+   {$IFDEF CPU64}
+    opath := ordir;
+    opath := copy(opath, 1, Pos('/UOS', opath) - 1);
+    PA_FileName := opath + '/lib/Mac/64bit/LibPortaudio-64.dylib';
+    SF_FileName := opath + '/lib/Mac/64bit/LibSndFile-64.dylib';
+    SoundFilename := ordir + '/sound/test.ogg';
+    {$ENDIF}  
  {$ENDIF}
  
     // Load the libraries
@@ -98,7 +108,8 @@ var
 
    if res = 0 then begin
     writeln();
-  //  writeln('Libraries version: '+ uos_GetInfoLibraries());
+ 
+//    writeln('Libraries version: '+ uos_GetInfoLibraries());
 
     //// Create the player.
     //// PlayerIndex : from 0 to what your computer can do !
@@ -109,16 +120,21 @@ var
    if uos_CreatePlayer(PlayerIndex1) then
   
   begin
-  
+ 
     //// add a Input from audio-file with default parameters
     //////////// PlayerIndex : Index of a existing Player
     ////////// FileName : filename of audio file
     //  result : -1 nothing created, otherwise Input Index in array
-
-    InputIndex1 := uos_AddFromFile(PlayerIndex1,(pchar(SoundFilename)));
     
+    InputIndex1 := uos_AddFromFile(PlayerIndex1, pchar((SoundFilename)), 
+    -1, -1, -1);
+    
+    
+      writeln('InputIndex1 = ' + inttostr(InputIndex1));
+     
       if InputIndex1 > -1 then
   
+  begin
     //// add a Output into device with default parameters
     //////////// PlayerIndex : Index of a existing Player
     //  result : -1 nothing created, otherwise Output Index in array
@@ -126,28 +142,32 @@ var
     {$if defined(cpuarm)}  // need a lower latency
         OutputIndex1 := uos_AddIntoDevOut(PlayerIndex1, -1, 0.3, -1, -1, -1, -1, -1) ;
        {$else}
-       OutputIndex1 := uos_AddIntoDevOut(PlayerIndex1);
-       {$endif}
        
-    //   z := 0;  writeln(inttostr(3 div z));   
+       //OutputIndex1 := uos_AddIntoDevOut(PlayerIndex1);
+         OutputIndex1 := uos_AddIntoDevOut(PlayerIndex1, -1, -1, -1, -1, -1, -1, -1) ;
+       {$endif}
+  
+     writeln('OutputIndex1 = ' + inttostr(OutputIndex1));
     
     if OutputIndex1 > -1 then 
     begin
 
     /////// everything is ready, here we are, lets play it...
+   
     uos_Play(PlayerIndex1);
+    
     sleep(1000);
     writeln;   
     writeln('Title: ' + uos_InputGetTagTitle(PlayerIndex1, InputIndex1));
     sleep(1500);
     writeln(); 
-    y := 0;
-   // x := 1 div y;
     writeln('Artist: ' + uos_InputGetTagArtist(PlayerIndex1, InputIndex1));
     writeln;  
  
     sleep(2000);
-   end;
+    
+     end;
+     end;
  end;
 end;
 
@@ -159,7 +179,7 @@ end;
  //   writeln('Press a key to exit...');
  //   readln;
    writeln('Ciao...');
-     uos_free(); // Do not forget this !
+    uos_free(); // Do not forget this !
     Terminate;   
   end;
 

@@ -85,7 +85,7 @@ object Form1: TForm1
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   Position = poDesktopCenter
-  LCLVersion = '5.9'
+  LCLVersion = '2.0.6.0'
   object Edit1: TEdit
     Left = 130
     Height = 27
@@ -157,6 +157,7 @@ object Form1: TForm1
     Height = 105
     Top = 145
     Width = 105
+    OnClick = PaintBox1Click
     OnPaint = PaintBox1Paint
   end
   object Button1: TButton
@@ -283,7 +284,7 @@ object Form1: TForm1
   object Panel1: TPanel
     Left = 1
     Height = 232
-    Top = 0
+    Top = 8
     Width = 498
     ClientHeight = 232
     ClientWidth = 498
@@ -303,16 +304,18 @@ object Form1: TForm1
     end
     object CheckBox1: TCheckBox
       Left = 122
-      Height = 22
+      Height = 18
       Top = 138
-      Width = 98
+      Width = 94
       Caption = 'Play Reverse'
+      Font.Height = 12
       OnChange = CheckBox1Change
+      ParentFont = False
       TabOrder = 1
     end
     object TrackBar2: TTrackBar
       Left = 120
-      Height = 35
+      Height = 36
       Top = 35
       Width = 355
       Max = 100
@@ -423,16 +426,18 @@ object Form1: TForm1
       ChildSizing.ShrinkVertical = crsScaleChilds
       ChildSizing.Layout = cclLeftToRightThenTopToBottom
       ChildSizing.ControlsPerLine = 1
-      ClientHeight = 62
-      ClientWidth = 105
+      ClientHeight = 61
+      ClientWidth = 103
       Color = clMoneyGreen
+      Font.Height = 12
+      ParentFont = False
       ParentColor = False
       TabOrder = 9
       object RadioButton1: TRadioButton
         Left = 6
         Height = 16
         Top = 6
-        Width = 93
+        Width = 91
         Caption = 'Float 32 bit'
         Checked = True
         Color = clMoneyGreen
@@ -442,9 +447,9 @@ object Form1: TForm1
       end
       object RadioButton2: TRadioButton
         Left = 6
-        Height = 17
+        Height = 16
         Top = 22
-        Width = 93
+        Width = 91
         Caption = 'Int 32 bit'
         Color = clMoneyGreen
         ParentColor = False
@@ -453,8 +458,8 @@ object Form1: TForm1
       object RadioButton3: TRadioButton
         Left = 6
         Height = 17
-        Top = 39
-        Width = 93
+        Top = 38
+        Width = 91
         Caption = 'Int 16 bit'
         Color = clMoneyGreen
         ParentColor = False
@@ -467,7 +472,9 @@ object Form1: TForm1
       Top = 75
       Width = 84
       Caption = '00:00:00.000'
+      Font.Height = 12
       ParentColor = False
+      ParentFont = False
     end
     object lposition: TLabel
       Left = 200
@@ -475,7 +482,9 @@ object Form1: TForm1
       Top = 75
       Width = 84
       Caption = '00:00:00.000'
+      Font.Height = 12
       ParentColor = False
+      ParentFont = False
     end
     object Label8: TLabel
       Left = 294
@@ -483,7 +492,9 @@ object Form1: TForm1
       Top = 75
       Width = 4
       Caption = '/'
+      Font.Height = 12
       ParentColor = False
+      ParentFont = False
     end
     object ShapeRight: TShape
       Left = 62
@@ -501,11 +512,13 @@ object Form1: TForm1
     end
     object CheckBox2: TCheckBox
       Left = 266
-      Height = 22
+      Height = 18
       Top = 94
-      Width = 184
+      Width = 180
       Caption = 'Enable SoundTouch Plugin'
+      Font.Height = 12
       OnChange = ChangePlugSet
+      ParentFont = False
       TabOrder = 10
     end
     object Button7: TButton
@@ -523,7 +536,9 @@ object Form1: TForm1
       Top = 121
       Width = 67
       Caption = 'Tempo: 1.0'
+      Font.Height = 12
       ParentColor = False
+      ParentFont = False
     end
     object Label9: TLabel
       Left = 382
@@ -531,7 +546,9 @@ object Form1: TForm1
       Top = 120
       Width = 58
       Caption = 'Pitch: 1.0'
+      Font.Height = 12
       ParentColor = False
+      ParentFont = False
     end
     object TrackBar4: TTrackBar
       Left = 342
@@ -561,30 +578,36 @@ object Form1: TForm1
     end
     object CheckBox3: TCheckBox
       Left = 122
-      Height = 22
+      Height = 18
       Top = 96
-      Width = 133
+      Width = 129
       Caption = 'Stereo to BinAural'
+      Font.Height = 12
       OnChange = CheckBox3Change
+      ParentFont = False
       TabOrder = 14
     end
     object Chknoise: TCheckBox
       Left = 122
-      Height = 22
+      Height = 18
       Top = 160
-      Width = 112
+      Width = 108
       Caption = 'Noise Remover'
+      Font.Height = 12
       OnChange = ChknoiseChange
+      ParentFont = False
       TabOrder = 15
       Visible = False
     end
     object chkstereo2mono: TCheckBox
       Left = 122
-      Height = 22
-      Top = 116
-      Width = 115
+      Height = 18
+      Top = 115
+      Width = 111
       Caption = 'Stereo to Mono'
+      Font.Height = 12
       OnChange = chkstereo2monoChange
+      ParentFont = False
       TabOrder = 16
     end
     object TrackBar1: TTrackBar

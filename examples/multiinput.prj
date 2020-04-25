@@ -104,7 +104,7 @@ options=114
  sorted=0
  col=-1073741823
  row=-1073741823
- rowheight=17
+ rowheight=16
  [projectoptionsfo.newfile]
  firsttab=0
  index=0
@@ -153,7 +153,7 @@ options=114
  value=
  [projectoptionsfo.makegroupbox]
  firsttab=0
- index=3
+ index=2
  [projectoptionsfo.exceptionsgrid]
  propcolwidthref=710
  width0=47
@@ -186,7 +186,7 @@ settings=8
  x=447
  y=148
  cx=471
- cy=446
+ cy=524
  wsize=0
  active=1
  visible=1
@@ -197,7 +197,7 @@ makecommand=${COMPILER}
 makedir=
 unitdirs=9
  ${lcldir}*
- ${lcldir}/components/*
+ ${lcldir}/components/BaseUtils
  ${lcldir}/*
  ${lcldir}/lcl/*
  ${lcldir}/lcl/interfaces/qt
@@ -219,7 +219,7 @@ makeoptions=8
  -vi
  -B
  -O-
- -O3 -XX -CX -Xs
+ -O1 -XX -CX -Xs
  -FUunits/
 makeoptpurpose=8
  
@@ -360,6 +360,8 @@ forcezorder=0
 stripmessageesc=0
 copymessages=0
 closemessages=0
+enablepurpose=0
+enablesource=0
 checkmethods=1
 colorerror=-1610612712
 colorwarning=-1610612717
@@ -445,12 +447,12 @@ makeoptionson=8
  0
  4095
  6
- 2
+ 6
  61
  63
 compilerusedon=29
- 4095
- 0
+ 4088
+ 7
  0
  0
  0
@@ -525,8 +527,8 @@ unitdirson=9
  987135
  987135
  987135
+ 987104
  987135
- 983040
  987135
  987135
  987135
@@ -657,6 +659,7 @@ externalconsole=0
 settty=1
 gdbdownload=0
 downloadalways=0
+restartgdbbeforeload=0
 startupbkpt=0
 startupbkpton=0
 gdbsimulator=0
@@ -739,58 +742,50 @@ envvarons=0
 [edit]
 hintwidth=0
 hintheight=0
-finddtext=AddFromEndlessMuted
-findhistory=5
+finddtext=endless
+findhistory=17
+ endless
+ SeekIfTerminated
+ seekken
+ isend
+ hasen
+ seeken
+ ended
+ nputSe
+ mut
+ endproc
+ ClosePlayer0
+ ClosePlayer1
  AddFromEndlessMuted
  readendl
  reade
  0.0
  AddFromSynth
 findoptions=1
-editpos=9
+editpos=5
  0,-1073741823
  0,-1073741823
  0,-1073741823
- 0,-1073741823
- 0,-1073741823
- 0,3594
- 0,-1073741823
- 0,-1073741823
+ 0,8
  0,-1073741823
 bookmarks0=0
 bookmarks1=0
 bookmarks2=0
 bookmarks3=0
 bookmarks4=0
-bookmarks5=0
-bookmarks6=0
-bookmarks7=0
-bookmarks8=0
-sourcefiles=9
- ${PROJECTDIR}/multiplayer.lpr
- ${PROJECTDIR}/main_mp.pas
+sourcefiles=5
  ${PROJECTDIR}/multiinput.lpr
  ${PROJECTDIR}/main_mi.pas
  ${PROJECTDIR}/uos_flat.pas
- ${PROJECTDIR}/uos.pas
+ /home/fred/uos/examples/uos.pas
  ${PROJECTDIR}/multiinput.lpr
- ${PROJECTDIR}/multiinput.lpr
- ${PROJECTDIR}/uos_flat.pas
-relpaths=9
- multiplayer.lpr
- main_mp.pas
+relpaths=5
  multiinput.lpr
  main_mi.pas
  uos_flat.pas
  uos.pas
  multiinput.lpr
- multiinput.lpr
- uos_flat.pas
-ismoduletexts=9
- 0
- 0
- 0
- 0
+ismoduletexts=5
  0
  0
  0
@@ -801,39 +796,23 @@ moduleoptions=0
 visiblemodules=0
 nomenumodules=0
 [sourcefo.files_tab]
-order=9
+order=5
  0
  1
- 2
  3
- 7
- 6
- 5
- 8
  4
-firsttab=1
-index=6
+ 2
+firsttab=0
+index=2
 [layout]
-windowlayout=533
+windowlayout=539
  [mainfo.basedock]
  splitdir=2
- useroptions=11395
- parent=mainfo.container
- visible=1
- mdistate=0
- nx=0
- ny=0
- ncx=668
- ncy=0
- x=0
- y=0
- cx=1147
- cy=604
- rcx=0
- rcy=0
+ useroptions=268450944
  [mainfo]
  splitdir=0
- useroptions=838860925
+ useroptions=301990011
+ stackedunder=
  parent=
  mdistate=0
  nx=0
@@ -846,15 +825,12 @@ windowlayout=533
  cy=621
  rcx=0
  rcy=0
- children=1
-  basedock,0,0,1147,604
- focusedchild=0
  wsize=0
  active=1
  visible=1
  [targetconsolefo]
  splitdir=0
- useroptions=805322857
+ useroptions=268451945
  parent=
  mdistate=0
  nx=0
@@ -872,7 +848,7 @@ windowlayout=533
  visible=0
  [threadsfo]
  splitdir=0
- useroptions=805322857
+ useroptions=268451945
  parent=
  mdistate=0
  nx=0
@@ -890,8 +866,8 @@ windowlayout=533
  visible=0
  [memoryfo]
  splitdir=0
- useroptions=805322875
- stackedunder=about_form
+ useroptions=268451963
+ stackedunder=dialogfilesfo
  parent=
  mdistate=0
  nx=0
@@ -917,7 +893,7 @@ windowlayout=533
  value=0
  [disassfo]
  splitdir=0
- useroptions=805322859
+ useroptions=268451947
  stackedunder=
  parent=
  mdistate=0
@@ -937,7 +913,7 @@ windowlayout=533
  [findinfilefo]
  splitdir=0
  useroptions=268451947
- stackedunder=mainfo
+ stackedunder=
  parent=
  mdistate=0
  nx=0
@@ -952,7 +928,7 @@ windowlayout=533
  rcy=0
  [projecttreefo]
  splitdir=0
- useroptions=805355627
+ useroptions=268484715
  parent=mainfo.panel1.container
  visible=1
  mdistate=0
@@ -963,7 +939,7 @@ windowlayout=533
  x=0
  y=0
  cx=205
- cy=455
+ cy=456
  rcx=0
  rcy=0
  [projecttreefo.grid]
@@ -975,10 +951,10 @@ windowlayout=533
  sorted=0
  col=1
  row=-1073741823
- rowheight=17
+ rowheight=16
  [stackfo]
  splitdir=0
- useroptions=805331049
+ useroptions=268460137
  parent=
  mdistate=0
  nx=0
@@ -996,7 +972,7 @@ windowlayout=533
  visible=0
  [watchpointsfo]
  splitdir=0
- useroptions=805322857
+ useroptions=268451945
  parent=
  mdistate=0
  nx=0
@@ -1054,7 +1030,7 @@ windowlayout=533
  value=1
  [objectinspectorfo]
  splitdir=0
- useroptions=805322859
+ useroptions=268451947
  stackedunder=
  parent=
  mdistate=0
@@ -1079,7 +1055,7 @@ windowlayout=533
  sortdescend1=0
  [symbolfo]
  splitdir=0
- useroptions=805322875
+ useroptions=268451963
  stackedunder=
  parent=
  mdistate=0
@@ -1098,7 +1074,11 @@ windowlayout=533
  visible=0
  [symbolfo.grid]
  propcolwidthref=207
- values0=14
+ values0=18
+  
+  
+  
+  
   
   
   
@@ -1120,7 +1100,7 @@ windowlayout=533
  [symbolfo.symbol]
  [watchfo]
  splitdir=0
- useroptions=805331049
+ useroptions=268460137
  parent=mainfo.basedock
  visible=0
  mdistate=0
@@ -1155,7 +1135,7 @@ windowlayout=533
  value=1
  [messagefo]
  splitdir=0
- useroptions=805388395
+ useroptions=268517483
  parent=mainfo.basedock
  visible=1
  mdistate=0
@@ -1164,14 +1144,14 @@ windowlayout=533
  ncx=0
  ncy=0
  x=0
- y=512
+ y=513
  cx=1147
  cy=92
  rcx=0
  rcy=0
  [componentstorefo]
  splitdir=0
- useroptions=805331067
+ useroptions=268460155
  stackedunder=
  parent=
  mdistate=0
@@ -1232,7 +1212,7 @@ windowlayout=533
  filefilter=
  [componentpalettefo]
  splitdir=0
- useroptions=805331051
+ useroptions=268460139
  stackedunder=
  parent=
  mdistate=3
@@ -1269,14 +1249,14 @@ windowlayout=533
  rcy=0
  [debuggerfo.basedock]
  splitdir=2
- useroptions=805452931
+ useroptions=268582019
  parent=debuggerfo.container
  visible=1
  mdistate=0
  nx=0
  ny=0
- ncx=1111
- ncy=52
+ ncx=1147
+ ncy=54
  x=0
  y=0
  cx=1147
@@ -1291,7 +1271,15 @@ windowlayout=533
  value=Pascal
  [debuggerfo.file_history]
  value=/home/fred/uos/examples/uos.pas
- history=0
+ history=8
+  /home/fred/uos/examples/uos.pas
+  /home/fred/uos/examples/multiinput.lpr
+  /home/fred/uos/examples/main_mi.pas
+  /home/fred/uos/examples/main_mp.pas
+  /home/fred/strumpract/src/commander.pas
+  /home/fred/strumpract/src/msefiledialog.pas
+  /home/fred/strumpract/src/dialogfiles.pas
+  /home/fred/strumpract/src/recorder.pas
  [debuggerfo.project_options]
  value=1
  [debuggerfo.hints]
@@ -1309,14 +1297,23 @@ windowlayout=533
  x=208
  y=0
  cx=939
- cy=455
+ cy=456
  rcx=0
  rcy=0
+ [sourcefo.files_tab]
+ order=5
+  0
+  1
+  3
+  4
+  2
+ firsttab=0
+ index=2
  [cpuc86_64fo]
  irqoff=0
  splitdir=0
  useroptions=268451947
- stackedunder=targetconsolefo
+ stackedunder=mainfo
  parent=
  mdistate=0
  nx=0
@@ -1334,7 +1331,7 @@ windowlayout=533
  visible=0
  [mainfo.panel1]
  splitdir=1
- useroptions=838958571
+ useroptions=302087659
  parent=mainfo.basedock
  visible=1
  mdistate=0
@@ -1345,7 +1342,7 @@ windowlayout=533
  x=0
  y=54
  cx=1147
- cy=455
+ cy=456
  rcx=0
  rcy=0
 [targetconsole]

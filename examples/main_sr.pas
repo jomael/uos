@@ -6,7 +6,7 @@ unit main_sr;
 interface
 
 uses
-  uos_flat, Forms, Dialogs, SysUtils, Graphics,
+  uos_flat, ctypes, Forms, Dialogs, SysUtils, Graphics,
   StdCtrls, ComCtrls, ExtCtrls, Classes, Controls;
 
 type
@@ -56,7 +56,10 @@ var
   BufferBMP: TBitmap;
   PlayerIndex1: cardinal;
   In1Index, out1index : integer;
-
+  thebuffer : array of cfloat;
+  thebufferinfos : TuosF_BufferInfos;
+  thememorystream : Tmemorystream;
+ 
 implementation
 
 {$R *.lfm}
@@ -101,14 +104,22 @@ begin
   Edit3.Text := application.Location + 'sound\testrecord.wav';
  {$ENDIF}
 
-  {$IFDEF Darwin}
-  opath := application.Location;
+   {$IFDEF Darwin}
+   {$IFDEF CPU32}
+  opath := application.location;
+  opath := copy(ordir, 1, Pos('/uos', opath) - 1);
+  Edit1.Text := opath + '/lib/Mac/32bit/LibPortaudio-32.dylib';
+  Edit2.Text := opath + '/lib/Mac/32bit/LibSndFile-32.dylib';
+  Edit3.Text := application.Location + '/sound/testrecord.wav';
+   {$ENDIF}
+    {$IFDEF CPU64}
+  opath := application.location;
   opath := copy(opath, 1, Pos('/uos', opath) - 1);
-  edit1.Text := opath + '/lib/Mac/32bit/LibPortaudio-32.dylib';
-  edit2.Text := opath + '/lib/Mac/32bit/LibSndFile-32.dylib';
-  Edit3.Text := opath + '/sound/testrecord.wav';
-            {$ENDIF}
-
+  Edit1.Text := opath + '/lib/Mac/64bit/LibPortaudio-64.dylib';
+  Edit2.Text := opath + '/lib/Mac/64bit/LibSndFile-64.dylib';
+  Edit3.Text := application.Location + '/sound/testrecord.wav';
+   {$ENDIF}
+    {$ENDIF}
    
     {$if defined(cpu64) and defined(linux) }
   Edit1.Text :=  application.Location + 'lib/Linux/64bit/LibPortaudio-64.so';
@@ -194,8 +205,21 @@ begin
     //uos_AddIntoFileFromMem(PlayerIndex1, Pchar(edit3.Text));
     //// add Output into wav file (save record) from TMemoryStream  with default parameters
 
+      // saving in a file using a File-Stream:
       uos_AddIntoFile(PlayerIndex1, Pchar(edit3.Text));
     //// add Output into wav file (save record) from TFileStream  with default parameters
+   
+  // saving in a Memory-Buffer:  
+  // SetLength(thebuffer, 0);
+  // uos_AddIntoMemoryBuffer(PlayerIndex1, @thebuffer);
+  
+ // saving in a Memory-Stream:  
+ // if thememorystream = nil then thememorystream := tmemorystream.create;
+ // uos_AddIntoMemoryStream(PlayerIndex1, (thememorystream),-1,-1,-1,-1);
+    
+  // saving in a file using a Menory-Stream:   
+  // uos_AddIntoFileFromMem(PlayerIndex1, Pchar(filenameEdit4.filename));
+  //// add Output into wav file (save record)  with default parameters
 
     //   uos_addIntoFile(PlayerIndex1, Pchar(edit3.Text) ,8000,1,1,-1 ); //  add a Output into wav with custom parameters mono radio-quality
     //////////// PlayerIndex : Index of a existing Player

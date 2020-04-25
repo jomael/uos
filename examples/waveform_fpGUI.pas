@@ -50,11 +50,11 @@ var
 
   procedure Twaveform.DrawWaveForm;
   begin
-     waveformdata := uos_InputGetLevelArray(PlayerIndex1, In1Index);
+    waveformdata := uos_InputGetLevelArray(PlayerIndex1, In1Index);
     fpgapplication.ProcessMessages;
     button1.tag := 1;
     custom1.Visible := True;
-
+  
   end;
 
   procedure Twaveform.btndrawclick(Sender: TObject);
@@ -64,8 +64,8 @@ var
     windowtitle := 'Wave Form.    uos version ' + IntToStr(uos_getversion());
 
     PlayerIndex1 := 0;
-
-    //// Create the player.
+    
+        //// Create the player.
     uos_CreatePlayer(PlayerIndex1);
     //// PlayerIndex : from 0 to what your computer can do !
     //// If PlayerIndex exists already, it will be overwriten...
@@ -228,12 +228,22 @@ var
  {$ENDIF}
 
   {$IFDEF Darwin}
+   {$IFDEF CPU32}
     opath := ordir;
     opath := copy(opath, 1, Pos('/uos', opath) - 1);
+    FilenameEdit1.FileName := ordir + 'sound/test.mp3';
     fnsf := opath + '/lib/Mac/32bit/LibSndFile-32.dylib';
     fnmp := opath + '/lib/Mac/32bit/LibMpg123-32.dylib';
-    FilenameEdit1.FileName := opath + 'sound/test.mp3';
-            {$ENDIF}
+    {$ENDIF}
+    {$IFDEF CPU64}
+    opath := ordir;
+    opath := copy(opath, 1, Pos('/uos', opath) - 1);
+    FilenameEdit1.FileName := ordir + 'sound/test.mp3';
+    fnsf := opath + '/lib/Mac/64bit/LibSndFile-64.dylib';
+    fnmp:= opath + '/lib/Mac/64bit/LibMpg123-64.dylib';
+    {$ENDIF}
+   {$ENDIF}
+
 
    {$if defined(cpu64) and defined(linux) }
     fnsf := ordir + 'lib/Linux/64bit/LibSndFile-64.so';

@@ -128,7 +128,7 @@ options=114
  sorted=0
  col=-1073741823
  row=-1073741823
- rowheight=17
+ rowheight=16
  [projectoptionsfo.newfile]
  firsttab=0
  index=0
@@ -150,7 +150,7 @@ options=114
  sortdescend6=0
  [projectoptionsfo.macrosplitter]
  x=0
- y=142
+ y=143
  xprop=1
  yprop=0.32805429864253
  [projectoptionsfo.macrogrid]
@@ -228,8 +228,8 @@ settings=8
  [settings_form]
  x=439
  y=124
- cx=471
- cy=446
+ cx=474
+ cy=536
  wsize=0
  active=1
  visible=1
@@ -253,16 +253,18 @@ objpref=-Fo
 targpref=-o
 befcommand=0
 aftcommand=0
-makeoptions=8
+makeoptions=9
  -fPIC
  -l -Mobjfpc -Schi
  -FE.
  -FUunits
  -WG
  -B -ghl
- -O4 -XX -Xs -CX
+ -O2 -XX -Xs -CX
+ _B
  -vewnhibq
-makeoptpurpose=8
+makeoptpurpose=9
+ 
  
  
  
@@ -376,6 +378,7 @@ forcezorder=0
 stripmessageesc=0
 copymessages=0
 closemessages=0
+enablepurpose=0
 checkmethods=1
 colorerror=-1610612712
 colorwarning=-1610612717
@@ -455,7 +458,7 @@ modulenames=0
 moduletypes=0
 modulefiles=0
 befcommandon=0
-makeoptionson=8
+makeoptionson=9
  0
  1023
  511
@@ -463,6 +466,7 @@ makeoptionson=8
  192
  2
  511
+ 4095
  511
 compilerusedon=29
  3903
@@ -495,12 +499,12 @@ compilerusedon=29
  0
  0
 debuggerusedon=6
- 3840
+ 3844
  0
  0
  0
  0
- 511
+ 507
 exeusedon=14
  4095
  0
@@ -700,6 +704,7 @@ externalconsole=0
 settty=1
 gdbdownload=0
 downloadalways=0
+restartgdbbeforeload=0
 startupbkpt=0
 startupbkpton=0
 gdbsimulator=0
@@ -749,9 +754,9 @@ on=1
 path=1
  /home/fred/uos/examples/simplerecorder_fpGUI.pas
 line=1
- 198
+ 331
 address=1
- 4209953
+ 4210008
 addbkpt=1
  0
 ignore=1
@@ -830,31 +835,36 @@ envvarons=0
 [edit]
 hintwidth=462
 hintheight=95
-finddtext=AddFromDevIn
+finddtext=AddFromMemoryBuffer
 findhistory=20
- AddFromDevIn
- chunkcount
- pa_open
- StreamOut[x].Data.TypePut
- Data.TypePut
- addintofile
- out1Index
- TFileStream
- tfile
- wChunkSize
- writebu
- read
- readb
- AddIntoFile
- file2buffer
- getsa
- filetobuffer
- uos_AddIntoFile
- freeon
- mono2
+ AddFromMemoryBuffer
+ AddFromMemoryStreamdec
+ readmem
+ writeout
+ ddIntoMemoryStream
+ length(StreamIn[x].MemoryStreamDec
+ MemoryStream
+ MemoryStreamDec
+ Pmemorystream
+ AddIntoMemoryStream
+ BufferOut
+ MemorySteamOut
+ Give to MemoryStream
+ PDArFloat
+ filetomem
+ file2mem
+ ^
+ @
+ AddFromMemorys
+ uos_AddIntoMemoryStream
 findoptions=1
-editpos=4
- 0,251
+editpos=9
+ 10,612
+ 0,-1073741823
+ 0,-1073741823
+ 0,-1073741823
+ 0,-1073741823
+ 0,-1073741823
  0,-1073741823
  0,-1073741823
  0,-1073741823
@@ -862,17 +872,37 @@ bookmarks0=0
 bookmarks1=0
 bookmarks2=0
 bookmarks3=0
-sourcefiles=4
- ${PROJECTDIR}/simplerecorder_fpGUI.pas
+bookmarks4=0
+bookmarks5=0
+bookmarks6=0
+bookmarks7=0
+bookmarks8=0
+sourcefiles=9
+ /home/fred/uos/examples/simplerecorder_fpGUI.pas
  ${PROJECTDIR}/uos.pas
  ${PROJECTDIR}/uos_flat.pas
  ${PROJECTDIR}/uos_portaudio.pas
-relpaths=4
+ ${PROJECTDIR}/consoleplaymemorybuffer.pas
+ ${PROJECTDIR}/fpg_style_chrome_silver_flatmenu.pas
+ ${PROJECTDIR}/uos_shout.pas
+ ${PROJECTDIR}/define.inc
+ ${PROJECTDIR}/main_sr.pas
+relpaths=9
  simplerecorder_fpGUI.pas
  uos.pas
  uos_flat.pas
  uos_portaudio.pas
-ismoduletexts=4
+ consoleplaymemorybuffer.pas
+ fpg_style_chrome_silver_flatmenu.pas
+ uos_shout.pas
+ define.inc
+ main_sr.pas
+ismoduletexts=9
+ 0
+ 0
+ 0
+ 0
+ 0
  0
  0
  0
@@ -882,15 +912,20 @@ moduleoptions=0
 visiblemodules=0
 nomenumodules=0
 [sourcefo.files_tab]
-order=4
+order=9
  0
+ 5
+ 4
  2
+ 8
  1
+ 7
+ 6
  3
 firsttab=0
 index=0
 [layout]
-windowlayout=543
+windowlayout=548
  [mainfo.basedock]
  splitdir=2
  useroptions=11395
@@ -904,7 +939,7 @@ windowlayout=543
  x=0
  y=0
  cx=1147
- cy=604
+ cy=605
  rcx=0
  rcy=0
  [mainfo]
@@ -923,7 +958,7 @@ windowlayout=543
  rcx=0
  rcy=0
  children=1
-  basedock,0,0,1147,604
+  basedock,0,0,1147,605
  focusedchild=0
  wsize=0
  active=1
@@ -945,7 +980,7 @@ windowlayout=543
  rcy=0
  wsize=0
  active=0
- visible=1
+ visible=0
  [threadsfo]
  splitdir=0
  useroptions=805322857
@@ -967,7 +1002,7 @@ windowlayout=543
  [memoryfo]
  splitdir=0
  useroptions=805322875
- stackedunder=about_form
+ stackedunder=componentstorefo
  parent=
  mdistate=0
  nx=0
@@ -994,7 +1029,7 @@ windowlayout=543
  [disassfo]
  splitdir=0
  useroptions=805322859
- stackedunder=
+ stackedunder=mainfo
  parent=
  mdistate=0
  nx=0
@@ -1013,7 +1048,7 @@ windowlayout=543
  [findinfilefo]
  splitdir=0
  useroptions=268451947
- stackedunder=targetconsolefo
+ stackedunder=cpuc86_64fo
  parent=
  mdistate=0
  nx=0
@@ -1039,7 +1074,7 @@ windowlayout=543
  x=0
  y=0
  cx=205
- cy=455
+ cy=456
  rcx=0
  rcy=0
  [projecttreefo.grid]
@@ -1051,7 +1086,7 @@ windowlayout=543
  sorted=0
  col=1
  row=-1073741823
- rowheight=17
+ rowheight=16
  [stackfo]
  splitdir=0
  useroptions=805331049
@@ -1156,7 +1191,7 @@ windowlayout=543
  [symbolfo]
  splitdir=0
  useroptions=805322875
- stackedunder=
+ stackedunder=findinfilefo
  parent=
  mdistate=0
  nx=0
@@ -1174,7 +1209,11 @@ windowlayout=543
  visible=0
  [symbolfo.grid]
  propcolwidthref=207
- values0=14
+ values0=18
+  
+  
+  
+  
   
   
   
@@ -1211,7 +1250,7 @@ windowlayout=543
  rcx=1262
  rcy=583
  [watchfo.grid]
- propcolwidthref=111
+ propcolwidthref=121
  values0=2
   -1
   -1
@@ -1248,7 +1287,7 @@ windowlayout=543
  ncx=0
  ncy=0
  x=0
- y=512
+ y=513
  cx=1147
  cy=92
  rcx=0
@@ -1256,7 +1295,7 @@ windowlayout=543
  [componentstorefo]
  splitdir=0
  useroptions=805331067
- stackedunder=
+ stackedunder=symbolfo
  parent=
  mdistate=0
  nx=0
@@ -1361,8 +1400,8 @@ windowlayout=543
  mdistate=0
  nx=0
  ny=0
- ncx=1111
- ncy=52
+ ncx=1147
+ ncy=54
  x=0
  y=0
  cx=1147
@@ -1377,9 +1416,10 @@ windowlayout=543
  value=Pascal
  [debuggerfo.file_history]
  value=/home/fred/uos/examples/simplerecorder_fpGUI.pas
- history=0
+ history=1
+  /home/fred/uos/examples/simplerecorder_fpGUI.pas
  [debuggerfo.project_options]
- value=B
+ value=1
  [debuggerfo.hints]
  value=0
  [sourcefo]
@@ -1395,14 +1435,14 @@ windowlayout=543
  x=208
  y=0
  cx=939
- cy=455
+ cy=456
  rcx=0
  rcy=0
  [cpuc86_64fo]
  irqoff=0
  splitdir=0
  useroptions=268451947
- stackedunder=findinfilefo
+ stackedunder=disassfo
  parent=
  mdistate=0
  nx=0
@@ -1431,10 +1471,11 @@ windowlayout=543
  x=0
  y=54
  cx=1147
- cy=455
+ cy=456
  rcx=0
  rcy=0
 [targetconsole]
-finddtext=
-findhistory=0
+finddtext=MemoryStreamDec
+findhistory=1
+ MemoryStreamDec
 findoptions=1

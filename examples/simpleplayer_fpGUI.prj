@@ -19,7 +19,7 @@ order16=0
 [projectoptions]
 projectdir=/home/fred/uos/examples
 projectfilename=/home/fred/uos/examples/simpleplayer_fpGUI.prj
-findinfiledialog=59
+findinfiledialog=61
  [findinfileadialogfo.subdirs]
  value=1
  [findinfileadialogfo.incurrentfile]
@@ -35,24 +35,30 @@ findinfiledialog=59
  [findinfileadialogfo.indirectories]
  value=1
  [findinfileadialogfo.mask]
- value="*.pas" "*.pp" "*.inc"
- history=1
+ value="*.pas" "*.pp" "*.inc" "*.*"
+ history=2
+  "*.pas" "*.pp" "*.inc" "*.*"
   "*.pas" "*.pp" "*.inc"
  [findinfileadialogfo.dir]
  filenames=1
-  /home/fred/fpgui/
+  /home/fred/fpcsrc304/
  filecolwidth=174
  x=0
  y=0
  cx=0
  cy=0
- filehistory=1
+ filehistory=2
+  /home/fred/fpcsrc304/
   /home/fred/fpgui/
  filefilterindex=0
  filefilter="*.pas" "*.pp" "*.inc"
  [findinfileadialogfo.findtext]
- value=mifSelected
+ value=Florian Klaempfl and others
  history=20
+  Florian Klaempfl and others
+  1993-2016 by Florian Klaempfl and others
+  Florian Klaempfl 
+  uos_callbacks
   mifSelected
   tm_get_filele
   sf_count_t
@@ -69,10 +75,6 @@ findinfiledialog=59
   Removalin
   Removalout
   DSPNoiseRemovalout
-  DSPNoiseRemovalin
-  DSPNoiseRemoval
-  setDSPVolumeout
-  setDSPVolumein
  [findinfileadialogfo]
  stackedunder=
  x=615
@@ -94,8 +96,10 @@ replacedialog=33
  [replacedialogfo.selectedonly]
  value=0
  [replacedialogfo.replacetext]
- value=AddIntoMemoryBuffer
+ value=FFT
  history=20
+  FFT
+  Data
   AddIntoMemoryBuffer
   Length
   LengthST
@@ -114,8 +118,6 @@ replacedialog=33
   InputSetDSP
   OutputSetDSP
   OutputAddDSP
-  cint32
-  shhandle
  [replacedialogfo]
  stackedunder=
  x=260
@@ -160,7 +162,7 @@ options=114
  sorted=0
  col=-1073741823
  row=-1073741823
- rowheight=17
+ rowheight=16
  [projectoptionsfo.newfile]
  firsttab=0
  index=0
@@ -182,7 +184,7 @@ options=114
  sortdescend6=0
  [projectoptionsfo.macrosplitter]
  x=0
- y=162
+ y=163
  xprop=1
  yprop=0.33066132264529
  [projectoptionsfo.macrogrid]
@@ -209,7 +211,7 @@ options=114
  value=
  [projectoptionsfo.makegroupbox]
  firsttab=0
- index=3
+ index=0
  [projectoptionsfo.exceptionsgrid]
  propcolwidthref=770
  width0=47
@@ -230,11 +232,11 @@ options=114
  index=1
  [projectoptionsfo.setting_tab]
  firsttab=0
- index=1
+ index=2
  [projectoptionsfo]
  stackedunder=
- x=356
- y=113
+ x=355
+ y=112
  cx=819
  cy=554
 programparameters=18
@@ -260,8 +262,8 @@ settings=8
  [settings_form]
  x=447
  y=145
- cx=471
- cy=446
+ cx=473
+ cy=539
  wsize=0
  active=1
  visible=1
@@ -307,23 +309,27 @@ objpref=-Fo
 targpref=-o
 befcommand=0
 aftcommand=0
-makeoptions=10
+makeoptions=12
  -fPIC
- -l -Mobjfpc -Sh -Fcutf8
+ -Xg -l -Mobjfpc -Sh -Fcutf8 -gl -O-
  -FE.
  -FUunits
  -WG
  -B
  -O2 -XX -CX -Xs
  -vewnbq
+ -sh
+ -Xd
  -ghl
  -CX -Cg  -g -gl -Xg -vewnhibq 
-makeoptpurpose=10
+makeoptpurpose=12
  
  
  
  
  For Windows only
+ 
+ 
  
  
  
@@ -430,10 +436,12 @@ newfosources=2
 newfoforms=2
  
  
-forcezorder=-1
+forcezorder=1
 stripmessageesc=0
 copymessages=0
 closemessages=0
+enablepurpose=0
+enablesource=0
 checkmethods=1
 colorerror=-1610612729
 colorwarning=-1610612712
@@ -513,7 +521,7 @@ modulenames=0
 moduletypes=0
 modulefiles=0
 befcommandon=0
-makeoptionson=10
+makeoptionson=12
  0
  511
  511
@@ -522,14 +530,16 @@ makeoptionson=10
  511
  511
  255
- 2
+ 0
+ 0
+ 4
  0
 compilerusedon=29
  3891
  4
  8
- 128
  64
+ 128
  0
  0
  0
@@ -555,12 +565,12 @@ compilerusedon=29
  0
  0
 debuggerusedon=6
- 3882
+ 3886
  0
  0
  0
  0
- 213
+ 209
 exeusedon=14
  3903
  0
@@ -652,9 +662,9 @@ fontoptions=0
 fontxscales=0
 expandprojectfilemacros=4
  1
- -1
- -1
- -1
+ 255
+ 255
+ 255
 loadprojectfile=4
  1
  0
@@ -738,11 +748,15 @@ afterconnect=
 beforeload=
 afterload=
 beforerun=
-sourcebase=
-sourcedirs=5
+sourcebase=/home/fred/fpcsrc304/fpcsrc/3.0.4/
+sourcedirs=9
  ${FPGUIDIR}/src/gui/
  ${FPGUIDIR}/src/corelib/gdi/X/
  ${FPGUIDIR}/src/corelib/x11/
+ ${FPCSRCDIR}/*/*/
+ ${FPCSRCDIR}/*/*/*/
+ ${FPCSRCDIR}/*/
+ ${FPCSRCDIR}/
  ${FPGUIDIR}/src/corelib/
  ./
 defines=0
@@ -760,6 +774,7 @@ externalconsole=0
 settty=1
 gdbdownload=0
 downloadalways=0
+restartgdbbeforeload=0
 startupbkpt=0
 startupbkpton=0
 gdbsimulator=0
@@ -804,19 +819,21 @@ sigsettings=27
  30,30,T,F
 defaultmake=32
 [breakpoints]
-on=11
+on=13
  -1
  0
  -1
  0
  0
+ 0
+ 0
  -1
  0
- -1
  0
  0
  0
-path=11
+ 0
+path=13
  /home/fred/uos/examples/uos.pas
  /home/fred/uos/examples/paio_channelhelper.pas
  /home/fred/uos_aac_new/examples/uos_aac.pas
@@ -828,43 +845,37 @@ path=11
  /home/fred/uos/examples/uos.pas
  /home/fred/uos/examples/uos.pas
  /home/fred/uos/examples/uos.pas
-line=11
- 3810
+ /home/fred/uos/examples/uos.pas
+ /home/fred/uos/examples/uos.pas
+line=13
+ 3900
  33
  913
  764
- 2725
- 2035
- 542
+ 2735
+ 2043
+ 572
  249
- 5642
- 5639
- 5638
-address=11
- 4946362
+ 5737
+ 5734
+ 5733
+ 2794
+ 2788
+address=13
+ 4946928
  0
  0
- 5066336
- 4932068
- 4919501
- 4215043
+ 5077776
+ 4930208
+ 4918960
+ 4214601
  0
- 4975034
- 4975034
- 4975034
-addbkpt=11
- 0
- 0
- 0
- 0
- 0
- 0
- 0
- 0
- 0
- 0
- 0
-ignore=11
+ 4971745
+ 4971674
+ 4971657
+ 4931697
+ 4931524
+addbkpt=13
  0
  0
  0
@@ -876,7 +887,25 @@ ignore=11
  0
  0
  0
-condition=11
+ 0
+ 0
+ignore=13
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+condition=13
+ 
+ 
  
  
  
@@ -910,6 +939,11 @@ units=
   a=0,8196,0,st2bi.pas
   )
   (
+  file=uos.pas
+  kind=1
+  a=0,8196,0,uos.pas
+  )
+  (
   file=uos_bs2b.pas
   kind=1
   a=0,8196,0,uos_bs2b.pas
@@ -939,11 +973,6 @@ units=
   kind=1
   a=0,8196,0,uos_soundtouch.pas
   )
-  (
-  file=uos.pas
-  kind=1
-  a=0,8196,0,uos.pas
-  )
  )
 cmodules=
  (
@@ -954,7 +983,7 @@ files=
  a=0,8229,6,Text Files
  )
 [componentstore]
-storedir=/home/fred/msegui/apps/ide/compstore/
+storedir=/home/fred/mseide-msegui/apps/ide/compstore/
 filename=
 [components]
 [selecteditpage]
@@ -970,68 +999,53 @@ envvarons=0
 [edit]
 hintwidth=462
 hintheight=19
-finddtext=x < OutFrames
+finddtext=Tmpg123_getformat
 findhistory=20
- x < OutFrames
- Tuos_Player.DSPLeve
- getbpm
- bpm
- getbpmplug
- soundtouchplug
- bs2bplug
- PlugFunc
- param1
- inputg
- SetPluginSoundTouch
- PluginIndex
- 'soundtouch'
- WriteOutPlug
- soundtouch
- getbpm'
- GetBPMPlug
+ Tmpg123_getformat
+ playno
  theinc
- mpg123_id3(StreamIn[x].Data.Handle
- addfromf
+ writeou
+ btnCloseClick
+ write
+ DofreePlayer
+ freeplayer
+ nofree
+ addfrom
+ CreatePlayer
+ play(
+ play
+ uos_play
+ seek
+ endproconly
+ endproc
+ status > 0
+ Tuos_Player.play(
+ playpaused
 findoptions=1
-editpos=8
- 0,3105
+editpos=5
  0,-1073741823
  0,-1073741823
  0,-1073741823
- 0,-1073741823
- 0,-1073741823
- 0,387
+ 0,0
  0,-1073741823
 bookmarks0=0
 bookmarks1=0
 bookmarks2=0
 bookmarks3=0
 bookmarks4=0
-bookmarks5=0
-bookmarks6=0
-bookmarks7=0
-sourcefiles=8
+sourcefiles=5
  ${PROJECTDIR}/uos.pas
- ${PROJECTDIR}/uos_mpg123.pas
- ${PROJECTDIR}/define.inc
+ ${PROJECTDIR}/simpleplayer_fpGUI.pas
  ${PROJECTDIR}/uos_flat.pas
- ${PROJECTDIR}/uos_httpgetthread.pas
- ${PROJECTDIR}/simpleplayer_fpGUI.pas
- ${PROJECTDIR}/simpleplayer_fpGUI.pas
- ${PROJECTDIR}/uos.pas
-relpaths=8
+ /home/fred/uos/examples/uos_libsndfile.pas
+ ${PROJECTDIR}/uos_mpg123.pas
+relpaths=5
  uos.pas
- uos_mpg123.pas
- define.inc
+ simpleplayer_fpGUI.pas
  uos_flat.pas
- uos_httpgetthread.pas
- simpleplayer_fpGUI.pas
- simpleplayer_fpGUI.pas
- uos.pas
-ismoduletexts=8
- 0
- 0
- 0
+ uos_libsndfile.pas
+ uos_mpg123.pas
+ismoduletexts=5
  0
  0
  0
@@ -1042,67 +1056,49 @@ moduleoptions=0
 visiblemodules=0
 nomenumodules=0
 [sourcefo.files_tab]
-order=8
+order=5
  0
- 3
- 7
- 6
- 5
- 4
  1
+ 3
+ 4
  2
 firsttab=0
-index=0
+index=2
 [layout]
-windowlayout=543
+windowlayout=561
  [mainfo.basedock]
  splitdir=2
- useroptions=11395
- parent=mainfo.container
- visible=1
- mdistate=0
- nx=0
- ny=0
- ncx=668
- ncy=0
- x=0
- y=0
- cx=1147
- cy=604
- rcx=0
- rcy=0
+ useroptions=268450944
  [mainfo]
  splitdir=0
- useroptions=838860925
+ useroptions=301990011
+ stackedunder=
  parent=
  mdistate=0
  nx=0
  ny=0
  ncx=0
  ncy=0
- x=92
- y=24
- cx=1157
- cy=621
+ x=3
+ y=29
+ cx=1360
+ cy=706
  rcx=0
  rcy=0
- children=1
-  basedock,0,0,1147,604
- focusedchild=0
  wsize=0
  active=1
  visible=1
  [targetconsolefo]
  splitdir=0
- useroptions=805322857
+ useroptions=268451945
  parent=
  mdistate=0
  nx=0
  ny=0
  ncx=0
  ncy=0
- x=493
- y=171
+ x=591
+ y=177
  cx=497
  cy=314
  rcx=0
@@ -1112,7 +1108,7 @@ windowlayout=543
  visible=1
  [threadsfo]
  splitdir=0
- useroptions=805322857
+ useroptions=268451945
  parent=
  mdistate=0
  nx=0
@@ -1130,7 +1126,7 @@ windowlayout=543
  visible=0
  [memoryfo]
  splitdir=0
- useroptions=805322875
+ useroptions=268451963
  stackedunder=dialogfilesfo
  parent=
  mdistate=0
@@ -1157,7 +1153,7 @@ windowlayout=543
  value=0
  [disassfo]
  splitdir=0
- useroptions=805322859
+ useroptions=268451947
  stackedunder=
  parent=
  mdistate=0
@@ -1185,14 +1181,14 @@ windowlayout=543
  ncx=0
  ncy=0
  x=239
- y=115
+ y=117
  cx=678
  cy=414
  rcx=0
  rcy=0
  [projecttreefo]
  splitdir=0
- useroptions=805355627
+ useroptions=268484715
  parent=mainfo.panel1.container
  visible=1
  mdistate=0
@@ -1203,7 +1199,7 @@ windowlayout=543
  x=0
  y=0
  cx=205
- cy=455
+ cy=513
  rcx=0
  rcy=0
  [projecttreefo.grid]
@@ -1213,22 +1209,22 @@ windowlayout=543
  width1=82
  sortdescend1=0
  sorted=0
- col=1
- row=-1073741823
+ col=0
+ row=5
  rowheight=17
  [stackfo]
  splitdir=0
- useroptions=805331049
+ useroptions=268460137
  parent=
  mdistate=0
  nx=0
  ny=0
  ncx=0
  ncy=0
- x=423
- y=321
- cx=344
- cy=155
+ x=3
+ y=29
+ cx=250
+ cy=180
  rcx=0
  rcy=0
  wsize=0
@@ -1236,7 +1232,7 @@ windowlayout=543
  visible=0
  [watchpointsfo]
  splitdir=0
- useroptions=805322857
+ useroptions=268451945
  parent=
  mdistate=0
  nx=0
@@ -1291,10 +1287,10 @@ windowlayout=543
  active=0
  visible=0
  [breakpointsfo.bkptson]
- value=0
+ value=1
  [objectinspectorfo]
  splitdir=0
- useroptions=805322859
+ useroptions=268451947
  stackedunder=
  parent=
  mdistate=0
@@ -1319,7 +1315,7 @@ windowlayout=543
  sortdescend1=0
  [symbolfo]
  splitdir=0
- useroptions=805322875
+ useroptions=268451963
  stackedunder=
  parent=
  mdistate=0
@@ -1338,7 +1334,11 @@ windowlayout=543
  visible=0
  [symbolfo.grid]
  propcolwidthref=207
- values0=14
+ values0=18
+  
+  
+  
+  
   
   
   
@@ -1360,7 +1360,7 @@ windowlayout=543
  [symbolfo.symbol]
  [watchfo]
  splitdir=0
- useroptions=805331049
+ useroptions=268460137
  parent=mainfo.basedock
  visible=0
  mdistate=0
@@ -1403,7 +1403,7 @@ windowlayout=543
  value=0
  [messagefo]
  splitdir=0
- useroptions=805388395
+ useroptions=268517483
  parent=mainfo.basedock
  visible=1
  mdistate=0
@@ -1412,14 +1412,14 @@ windowlayout=543
  ncx=0
  ncy=0
  x=0
- y=512
- cx=1147
- cy=92
+ y=577
+ cx=1350
+ cy=104
  rcx=0
  rcy=0
  [componentstorefo]
  splitdir=0
- useroptions=805331067
+ useroptions=268460155
  stackedunder=
  parent=
  mdistate=0
@@ -1482,7 +1482,7 @@ windowlayout=543
  filefilter=
  [componentpalettefo]
  splitdir=0
- useroptions=805331051
+ useroptions=268460139
  stackedunder=
  parent=
  mdistate=3
@@ -1513,24 +1513,24 @@ windowlayout=543
  ncy=0
  x=0
  y=0
- cx=1147
- cy=51
+ cx=1350
+ cy=58
  rcx=0
  rcy=0
  [debuggerfo.basedock]
  splitdir=2
- useroptions=805452931
+ useroptions=268582019
  parent=debuggerfo.container
  visible=1
  mdistate=0
  nx=0
  ny=0
- ncx=1147
- ncy=54
+ ncx=1350
+ ncy=61
  x=0
  y=0
- cx=1147
- cy=54
+ cx=1350
+ cy=61
  rcx=0
  rcy=0
  [debuggerfo.edit_options]
@@ -1540,10 +1540,30 @@ windowlayout=543
  [debuggerfo.edit_compiler]
  value=Pascal
  [debuggerfo.file_history]
- value=/home/fred/uos/examples/uos.pas
- history=0
+ value=/home/fred/uos/examples/uos_libsndfile.pas
+ history=20
+  /home/fred/uos/examples/uos_libsndfile.pas
+  /home/fred/uos/examples/uos_mpg123.pas
+  /home/fred/uos/examples/uos_flat.pas
+  /home/fred/uos/examples/simpleplayer_fpGUI.pas
+  /home/fred/uos/src/uos.pas
+  /home/fred/eschecs/source/engines.pas
+  /home/fred/eschecs/source/settings.pas
+  /home/fred/eschecs_colorstatus/source/eschecs.pas
+  /home/fred/eschecs_colorstatus/source/eschecs.res
+  /home/fred/eschecs/source/board.pas
+  /home/fred/eschecs_prerel2/source/eschecs.pas
+  /home/fred/eschecs/source/version.inc
+  /home/fred/eschecs_prerel2/source/version.inc
+  /home/fred/eschecs_colorstatus/source/version.inc
+  /home/fred/ideu/src/main.pas
+  /home/fred/ideu/src/msefiledialog.pas
+  /home/fred/ideu/src/dialogfiles.pas
+  /home/fred/ideu/src/findinfileform.mfm
+  /home/fred/ideu/src/messageform.pas
+  /home/fred/eschecs/source/eco/eco.pas
  [debuggerfo.project_options]
- value=B
+ value=1
  [debuggerfo.hints]
  value=0
  [sourcefo]
@@ -1558,17 +1578,26 @@ windowlayout=543
  ncy=0
  x=208
  y=0
- cx=939
- cy=455
+ cx=1142
+ cy=513
  rcx=0
  rcy=0
+ [sourcefo.files_tab]
+ order=5
+  0
+  1
+  3
+  4
+  2
+ firsttab=0
+ index=2
  [cpuc86_64fo]
  irqoff=0
  splitdir=0
  useroptions=268451947
  stackedunder=targetconsolefo
  parent=
- mdistate=0
+ mdistate=3
  nx=0
  ny=0
  ncx=0
@@ -1584,7 +1613,7 @@ windowlayout=543
  visible=0
  [mainfo.panel1]
  splitdir=1
- useroptions=838958571
+ useroptions=302087659
  parent=mainfo.basedock
  visible=1
  mdistate=0
@@ -1593,9 +1622,9 @@ windowlayout=543
  ncx=0
  ncy=0
  x=0
- y=54
- cx=1147
- cy=455
+ y=61
+ cx=1350
+ cy=513
  rcx=0
  rcy=0
 [targetconsole]

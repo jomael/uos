@@ -89,7 +89,7 @@ begin
 {$ENDIF}
    
    mainfo.songdir.controller.lastdir := ordir + 'sound' ;
-mainfo.height := 356 ;
+mainfo.height := 400 ;
  
 mainfo.vuLeft.Visible := False;
      

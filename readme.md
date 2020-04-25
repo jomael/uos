@@ -1,4 +1,7 @@
-uos : United OpenLib of Sound.
+![uos2](https://user-images.githubusercontent.com/3421249/71642778-1fa59400-2cb1-11ea-953b-06658f3b986d.png)
+
+# uos : United OpenLib of Sound.
+
 
 uos unifies the best open-source audio libraries.
 
@@ -20,21 +23,19 @@ With uos you can:
 
 . Produce sound from built-in synthesizer.
 
-uos can use:
-PortAudio, SndFile, Mpg123, Faad, Mp4ff, Opus, OpusFile audio libraries and
-SoundTouch, Bs2b audio-effect libraries.
+uos can use: PortAudio, SndFile, Mpg123, Faad, Mp4ff, Opus, OpusFile
+audio libraries and SoundTouch, Bs2b audio-effect libraries.
 
 Included in the package:
+
 . Examples fpGUI, MSEgui, LCL and console.
-. Binaries of libraries for Linux, arm-Rapsberry Pi, Windows, Mac osX, FreeBSD.
- 
-See you at uos forum:
-http://uos.2369694.n4.nabble.com
 
+. Binaries of libraries for Linux, arm-Rapsberry Pi, Windows, Mac osX,
+FreeBSD.
 
-There are pre-compiled libraries also here:
-=> https://github.com/fredvs/uos/releases/
+See you at uos forum: http://uos.2369694.n4.nabble.com
 
-Fred van Stappen
-fiens@hotmail.com
+There are pre-compiled libraries also here: =\>
+https://github.com/fredvs/uos/releases/
 
+Fred van Stappen fiens@hotmail.com

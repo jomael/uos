@@ -214,9 +214,16 @@ var
 
   procedure TSimpleplayer.VolumeChange(Sender: TObject; pos: integer);
   begin
+  
+  {
       uos_InputSetDSPVolume(PlayerIndex1, InputIndex1,
         (100 - TrackBar2.position) / 100,
         (100 - TrackBar3.position) / 100, True);
+   }
+     
+    uos_OutputSetDSPVolume(PlayerIndex1, OutputIndex1,
+        (100 - TrackBar2.position) / 100,
+        (100 - TrackBar3.position) / 100, True);      
   end;
 
  procedure TSimpleplayer.ShowLevel;
@@ -341,7 +348,7 @@ loadok : boolean = false;
 
   ///// example how to do custom dsp
   
-  function DSPReverseBefore(var Data: TuosF_Data; var fft: TuosF_FFT): TDArFloat;
+  function DSPReverseBefore(var Data: TuosF_Data;var fft: TuosF_FFT): TDArFloat;
   begin
    
     if (Data.position > Data.OutFrames div Data.channels) then
@@ -370,7 +377,7 @@ loadok : boolean = false;
   
   /// WARNING: This is only to show a DSP effect, it is not the best reverb it exists ;-)
 {
-  function DSPReverb(var Data: TuosF_Data; var fft: TuosF_FFT): TDArFloat;
+  function DSPReverb(Data: TuosF_Data; fft: TuosF_FFT): TDArFloat;
   var
     x: integer = 0;
     arfl: TDArFloat;
@@ -505,7 +512,7 @@ loadok : boolean = false;
      uos_InputGetChannels(PlayerIndex1, InputIndex1), samformat, -1, -1);
        {$endif}
    
-    //// add a Output into device with custom parameters
+       //// add a Output into device with custom parameters
     //////////// PlayerIndex : Index of a existing Player
     //////////// Device ( -1 is default Output device )
     //////////// Latency  ( -1 is latency suggested ) )
@@ -513,7 +520,6 @@ loadok : boolean = false;
     //////////// Channels : delault : -1 (2:stereo) (0: no channels, 1:mono, 2:stereo, ...)
     //////////// SampleFormat : -1 default : Int16 : (0: Float32, 1:Int32, 2:Int16)
     //////////// FramesCount : default : -1 (65536)
-    // ChunkCount : default : -1 (= 512)
     //  result : -1 nothing created, otherwise Output Index in array
 
      uos_InputSetLevelEnable(PlayerIndex1, InputIndex1, 2) ;
@@ -535,20 +541,21 @@ loadok : boolean = false;
     //////////// PlayerIndex : Index of a existing Player
     //////////// InputIndex1 : Index of a existing Input
     //////////// LoopProcPlayer1 : procedure of object to execute inside the loop
-    
-    uos_InputAddDSPVolume(PlayerIndex1, InputIndex1, 1, 1);
+
+ 
+   uos_OutputAddDSPVolume(PlayerIndex1, OutputIndex1, 1, 1);
     ///// DSP Volume changer
     ////////// PlayerIndex1 : Index of a existing Player
-    ////////// InputIndex1 : Index of a existing input
+    ////////// OutputIndex1 : Index of a existing output
     ////////// VolLeft : Left volume
     ////////// VolRight : Right volume
- //{
-     uos_InputSetDSPVolume(PlayerIndex1, InputIndex1,
+ 
+     uos_OutputSetDSPVolume(PlayerIndex1, OutputIndex1,
       (100 - TrackBar2.position) / 100,
       (100 - TrackBar3.position) / 100, True);
- //}   /// Set volume
+    /// Set volume
     ////////// PlayerIndex1 : Index of a existing Player
-    ////////// InputIndex1 : InputIndex of a existing Input
+    ////////// OutputIndex1 : InputIndex of a existing Output
     ////////// VolLeft : Left volume
     ////////// VolRight : Right volume
     ////////// Enable : Enabled
@@ -1319,6 +1326,7 @@ end;
  {$ENDIF}
 
   {$IFDEF Darwin}
+   {$IFDEF CPU32}
     opath := ordir;
     opath := copy(opath, 1, Pos('/uos', opath) - 1);
     FilenameEdit1.FileName := opath + '/lib/Mac/32bit/LibPortaudio-32.dylib';
@@ -1326,7 +1334,16 @@ end;
     FilenameEdit3.FileName := opath + '/lib/Mac/32bit/LibMpg123-32.dylib';
     FilenameEdit5.FileName := opath + '/lib/Mac/32bit/plugin/libSoundTouch-32.dylib';
     FilenameEdit4.FileName := opath + 'sound/test.ogg';
-            {$ENDIF}
+    {$ENDIF}
+    {$IFDEF CPU64}
+    opath := ordir;
+    opath := copy(opath, 1, Pos('/uos', opath) - 1);
+    FilenameEdit1.FileName := opath + '/lib/Mac/64bit/LibPortaudio-64.dylib';
+    FilenameEdit2.FileName := opath + '/lib/Mac/64bit/LibSndFile-64.dylib';
+    FilenameEdit3.FileName := opath + '/lib/Mac/64bit/LibMpg123-64.dylib';
+    FilenameEdit4.FileName := opath + 'sound/test.ogg';
+    {$ENDIF}
+   {$ENDIF}
 
      {$if defined(cpu64) and defined(linux) }
     FilenameEdit1.FileName := ordir + 'lib/Linux/64bit/LibPortaudio-64.so';
